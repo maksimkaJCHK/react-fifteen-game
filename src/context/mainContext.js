@@ -4,23 +4,39 @@ import React, {
   useReducer
 } from "react";
 
+import { generateBoardItem } from '@/helpers/helpers.js';
+
 const MainContext = createContext();
 
-export const useNumpuzContext = () => useContext(MainContext);
+export const useGameContext = () => useContext(MainContext);
 
 const initialState = {
-  items: [1, 2, 3, null, 4, 5, 6, 7, 8, ]
+  items: [],
+  isGameOver: false,
+  isStart: false,
+  size: 3
 };
 
-const reducer = (state, action) => {
+const reducer = (state, { type, payload }) => {
+  if (type === 'start') {
+    const { size } = state;
+    const items = generateBoardItem(size);
+
+    return {
+      ...state,
+      items
+    }
+  }
   return state;
 };
 
 export const Provider = ({ children }) => {
   const [ state, dispatch ] = useReducer(reducer, initialState);
 
+  const startGame = () => dispatch({ type: 'start' });
+
   return (
-    <MainContext.Provider value = { state } >
+    <MainContext.Provider value = {{ ...state, startGame }} >
       { children }
     </MainContext.Provider>
   )

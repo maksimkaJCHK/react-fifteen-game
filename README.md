@@ -1,2 +1,2 @@
-# react-numpuz
+# react-fifteen-game
 

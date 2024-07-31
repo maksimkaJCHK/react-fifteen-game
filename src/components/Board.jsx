@@ -5,7 +5,7 @@ import { useGameContext } from '@/context/mainContext';
 import './board.scss';
 
 const Board = () => {
-  const { items, startGame } = useGameContext();
+  const { items, startGame, moveFigure } = useGameContext();
 
   useEffect(() => {
     startGame()
@@ -19,6 +19,7 @@ const Board = () => {
           return <div
             key = { count }
             className = { `board-item board-item-${count}` }
+            onClick = { () => moveFigure(count) }
           >
             { item }
           </div>

@@ -4,7 +4,13 @@ import React, {
   useReducer
 } from "react";
 
-import { generateBoardItem } from '@/helpers/helpers.js';
+import {
+  generateBoardItem,
+  colInRow,
+  colInCols,
+  moveFigures,
+  isEqualArr
+} from '@/helpers/helpers.js';
 
 const MainContext = createContext();
 
@@ -14,7 +20,8 @@ const initialState = {
   items: [],
   isGameOver: false,
   isStart: false,
-  size: 3
+  size: 3,
+  count: 0,
 };
 
 const reducer = (state, { type, payload }) => {
@@ -24,9 +31,39 @@ const reducer = (state, { type, payload }) => {
 
     return {
       ...state,
-      items
+      items,
+      count: 0,
     }
   }
+
+  if (type === 'move') {
+    const { items, count, size } = state;
+
+    const idxNull = items.findIndex((el) => el === null);
+
+    const isColInRow = colInRow(idxNull, size) === colInRow(payload, size);
+    const isColInCols = colInCols(idxNull, size) === colInCols(payload, size);
+
+    if (isColInRow || isColInCols) {
+      const newItems = moveFigures({
+        items,
+        idxNull,
+        curIdx: payload,
+        smes: isColInCols ? size : 1
+      });
+      console.log(isEqualArr(newItems));
+      return {
+        ...state,
+        items: newItems,
+        count: count + 1,
+      }
+    }
+
+    return {
+      ...state,
+    }
+  }
+
   return state;
 };
 
@@ -34,9 +71,10 @@ export const Provider = ({ children }) => {
   const [ state, dispatch ] = useReducer(reducer, initialState);
 
   const startGame = () => dispatch({ type: 'start' });
+  const moveFigure = (idx) => dispatch({ type: 'move', payload: idx });
 
   return (
-    <MainContext.Provider value = {{ ...state, startGame }} >
+    <MainContext.Provider value = {{ ...state, startGame, moveFigure }} >
       { children }
     </MainContext.Provider>
   )

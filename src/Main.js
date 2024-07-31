@@ -9,9 +9,9 @@ import './styles/style.scss';
 const node = document.getElementById('app');
 const root = ReactDOM.createRoot(node);
 
-const Numpuz = () => {
+const FifteenGame = () => {
   return (
-    <div className = "Numpuz">
+    <div className = "fifteen-game">
       <Provider>
         <Board />
       </Provider>
@@ -19,4 +19,4 @@ const Numpuz = () => {
   );
 }
 
-root.render(<Numpuz />);
+root.render(<FifteenGame />);

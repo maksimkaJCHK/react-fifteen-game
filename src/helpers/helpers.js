@@ -1,10 +1,10 @@
-export const colInRow = (x, rowNumb) => {
+export const calcNumbRow = (x, rowNumb) => {
   if (x < rowNumb) return 1;
 
   return Math.floor(x / rowNumb) + 1;
 };
 
-export const colInCols = (x, rowNumb) => {
+export const calcNumbCol = (x, rowNumb) => {
   if (x < rowNumb) return x + 1;
 
   return x%rowNumb + 1;
@@ -60,11 +60,10 @@ export const moveFigures = ({
 }
 
 // Генерю нужный массив
-const genrateArray = (num, add) => {
-  const puzzle = [...Array(num)].map((_, i) => i + add);
-  puzzle.push(null);
-
-  return puzzle;
+const generateArr = function* (endCount) {
+  let count = 1;
+  while (count < endCount) yield count++;
+  yield null;
 };
 
 // Проверяю решаема ли пятнашка
@@ -76,25 +75,20 @@ const isSolvable = (puzzle, sizeBoard = 4) => {
   for (let i = 0; i < puzzle.length; i++) {
     if (i % sizeBoard === 0) row++;
 
-    if (puzzle[i] === 0) {
+    if (puzzle[i] === null) {
       blankRow = row;
 
       continue;
     }
 
-    for (var j = i + 1; j < puzzle.length; j++) {
-      if (puzzle[i] > puzzle[j] && puzzle[j] != 0) parity++;
+    for (let j = i + 1; j < puzzle.length; j++) {
+      if (puzzle[i] > puzzle[j] && puzzle[j] !== null) parity++;
     }
   }
 
   if (sizeBoard % 2 === 0) {
-    if (blankRow % 2 === 0) {
-      return parity % 2 === 0;
-    }
-
-    if ((blankRow % 2 !== 0)) {
-      return parity % 2 !== 0;
-    }
+    if (blankRow % 2 === 0) return parity % 2 === 0;
+    if (blankRow % 2 !== 0) return parity % 2 !== 0;
   } else {
     return parity % 2 == 0;
   }
@@ -118,11 +112,11 @@ const shuffle = (array) => {
 
 // Генерю пятнашки
 export const generateBoardItem = (sizeBoard = 3) => {
-  const calcWidth = sizeBoard * sizeBoard - 1;
-  let newPuzzle = shuffle(genrateArray(calcWidth, 1));
+  const calcWidth = sizeBoard * sizeBoard;
+  let newPuzzle = shuffle([...generateArr(calcWidth)]);
 
   while (!isSolvable(newPuzzle, sizeBoard)) {
-    newPuzzle = shuffle(genrateArray(calcWidth, 1));
+    newPuzzle = shuffle([...generateArr(calcWidth)]);
   }
 
   return newPuzzle;

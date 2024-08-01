@@ -1,7 +1,6 @@
 .board {
   --size: 33.333333333333333%;
-  --position-2: var(--size);
-  --position-3: 66.666666666666666%;
+  $transitionSettings: .4s ease-in-out 0s;
 
   max-width: 400px;
   margin: 20px auto;
@@ -15,6 +14,11 @@
     padding-top: 100%;
   }
   &-item {
+    .stop-game & {
+      cursor: default;
+    }
+    top: 0;
+    left: 0;
     color: #fff;
     width: var(--size);
     height: var(--size);
@@ -25,40 +29,8 @@
     background: brown;
     font-size: 50px;
     cursor: pointer;
+    user-select: none;
     box-shadow: inset 0 0 1px rgba(0, 0, 0, .4);
-
-    &-0,
-    &-3,
-    &-6 {
-      left: 0;
-    }
-    &-1,
-    &-4,
-    &-7 {
-      left: var(--position-2);
-    }
-    &-2,
-    &-5,
-    &-8 {
-      left: var(--position-3);
-    }
-    // Первый ряд
-    &-0,
-    &-1,
-    &-2 {
-      top: 0;
-    }
-    // Второй ряд
-    &-3,
-    &-4,
-    &-5 {
-      top: var(--position-2);
-    }
-    // Третий ряд
-    &-6,
-    &-7,
-    &-8 {
-      top: var(--position-3);
-    }
+    transition: left $transitionSettings, top $transitionSettings;
   }
 }

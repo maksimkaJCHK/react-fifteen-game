@@ -6,8 +6,8 @@ import React, {
 
 import {
   generateBoardItem,
-  colInRow,
-  colInCols,
+  calcNumbRow,
+  calcNumbCol,
   moveFigures,
   isEqualArr
 } from '@/helpers/helpers.js';
@@ -25,6 +25,8 @@ const initialState = {
 };
 
 const reducer = (state, { type, payload }) => {
+  const { isGameOver } = state;
+
   if (type === 'start') {
     const { size } = state;
     const items = generateBoardItem(size);
@@ -33,16 +35,18 @@ const reducer = (state, { type, payload }) => {
       ...state,
       items,
       count: 0,
+      isStart: true,
+      isGameOver: false
     }
   }
 
-  if (type === 'move') {
-    const { items, count, size } = state;
+  if (type === 'move' && !isGameOver) {
+    const { items, count, size, isGameOver } = state;
 
     const idxNull = items.findIndex((el) => el === null);
 
-    const isColInRow = colInRow(idxNull, size) === colInRow(payload, size);
-    const isColInCols = colInCols(idxNull, size) === colInCols(payload, size);
+    const isColInRow = calcNumbRow(idxNull, size) === calcNumbRow(payload, size);
+    const isColInCols = calcNumbCol(idxNull, size) === calcNumbCol(payload, size);
 
     if (isColInRow || isColInCols) {
       const newItems = moveFigures({
@@ -51,11 +55,13 @@ const reducer = (state, { type, payload }) => {
         curIdx: payload,
         smes: isColInCols ? size : 1
       });
-      console.log(isEqualArr(newItems));
+
       return {
         ...state,
         items: newItems,
         count: count + 1,
+        isGameOver: isEqualArr(newItems),
+        isStart: !isEqualArr(newItems),
       }
     }
 

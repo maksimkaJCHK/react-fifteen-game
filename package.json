@@ -1,19 +1,20 @@
 {
   "name": "react-fifteen-game",
   "version": "0.0.1",
-  "description": "react-numpuz, а по русски пятнашки)))",
+  "description": "react-fifteen-game, а по русски просто пятнашки.",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/maksimkaJCHK/react-fifteen-game"
+  },
   "scripts": {
     "dev": "rollup -c ./config/rollup.config.js -w",
     "build": "rollup -c ./config/rollup.config.prod.js",
     "build:extract": "rollup -c ./config/rollup.config.prod.extract.js"
   },
   "keywords": [
-    "rollup",
-    "boilerplate",
-    "rollup-boilerplate",
-    "react rollup-boilerplate",
-    "javascript rollup-boilerplate"
+    "react-fifteen-game",
+    "пятнашки"
   ],
   "author": "Maksim Zhuchkov",
   "license": "MIT",

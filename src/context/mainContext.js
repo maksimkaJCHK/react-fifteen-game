@@ -9,7 +9,9 @@ import {
   calcNumbRow,
   calcNumbCol,
   moveFigures,
-  isEqualArr
+  generateArr,
+  bForCompareArr,
+  isStopGame
 } from '@/helpers/helpers.js';
 
 const MainContext = createContext();
@@ -21,8 +23,9 @@ const initialState = {
   firstPosition: [],
   isGameOver: false,
   isStart: false,
-  size: 3,
+  size: 4,
   count: 0,
+  stopGameCondition: ''
 };
 
 const reducer = (state, { type, payload }) => {
@@ -31,10 +34,12 @@ const reducer = (state, { type, payload }) => {
   if (type === 'start') {
     const { size } = state;
     const items = generateBoardItem(size);
+    const stopGameCondition = bForCompareArr([...generateArr(size * size)]);
 
     return {
       ...state,
       items,
+      stopGameCondition,
       count: 0,
       isStart: true,
       isGameOver: false,
@@ -43,7 +48,12 @@ const reducer = (state, { type, payload }) => {
   }
 
   if (type === 'move' && !isGameOver) {
-    const { items, count, size } = state;
+    const {
+      items,
+      count,
+      size,
+      stopGameCondition
+    } = state;
 
     const idxNull = items.findIndex((el) => el === null);
 
@@ -63,8 +73,8 @@ const reducer = (state, { type, payload }) => {
         ...state,
         items: newItems,
         count: count + 1,
-        isGameOver: isEqualArr(newItems),
-        isStart: !isEqualArr(newItems),
+        isGameOver: isStopGame(newItems, stopGameCondition),
+        isStart: !isStopGame(newItems, stopGameCondition),
       }
     }
 

@@ -10,10 +10,15 @@ export const calcNumbCol = (x, rowNumb) => {
   return x%rowNumb + 1;
 };
 
-export const isEqualArr = (arr, size) => {
-  // Пока не доделано, но как определять конец игры я уже понимаю
-  return arr.map((el) => String(el)).join(',') === '1,2,3,4,5,6,7,8,null';
+// Генерю нужный массив
+export const generateArr = function* (endCount) {
+  let count = 1;
+  while (count < endCount) yield count++;
+  yield null;
 };
+
+export const bForCompareArr = (arr) => arr.map((el) => String(el)).join(',');
+export const isStopGame = (arr, stopGameCondition) => bForCompareArr(arr) === stopGameCondition;
 
 const changeArr = ({ items, idx1, idx2 }) => {
   const elem1 = items[idx1];
@@ -58,13 +63,6 @@ export const moveFigures = ({
 
   return newItems;
 }
-
-// Генерю нужный массив
-const generateArr = function* (endCount) {
-  let count = 1;
-  while (count < endCount) yield count++;
-  yield null;
-};
 
 // Проверяю решаема ли пятнашка
 const isSolvable = (puzzle, sizeBoard = 4) => {

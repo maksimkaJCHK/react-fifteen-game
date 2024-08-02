@@ -28,12 +28,18 @@ const Board = () => {
     }
   };
 
+  const boardClass = [
+    'board',
+    `board-size-${size}`,
+    `${isGameOver ? 'stop-game' : '' }`
+  ];
+
   useEffect(() => {
     startGame();
   }, []);
 
   return (
-    <div className = { `board ${isGameOver ? 'stop-game' : '' }` }>
+    <div className = { boardClass.join(' ') }>
       { firstPosition.map((item) => {
           if (!item) return null;
 

@@ -1,6 +1,8 @@
+@import '../styles/easing';
+
 .board {
   --size: 33.333333333333333%;
-  $transitionSettings: .4s ease-in-out 0s;
+  $transitionSettings: .4s $easeInOutSine 0s;
 
   max-width: 400px;
   margin: 20px auto;

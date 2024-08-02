@@ -18,6 +18,7 @@ export const useGameContext = () => useContext(MainContext);
 
 const initialState = {
   items: [],
+  firstPosition: [],
   isGameOver: false,
   isStart: false,
   size: 3,
@@ -36,23 +37,25 @@ const reducer = (state, { type, payload }) => {
       items,
       count: 0,
       isStart: true,
-      isGameOver: false
+      isGameOver: false,
+      firstPosition: items.map((el) => el)
     }
   }
 
   if (type === 'move' && !isGameOver) {
-    const { items, count, size, isGameOver } = state;
+    const { items, count, size } = state;
 
     const idxNull = items.findIndex((el) => el === null);
 
-    const isColInRow = calcNumbRow(idxNull, size) === calcNumbRow(payload, size);
-    const isColInCols = calcNumbCol(idxNull, size) === calcNumbCol(payload, size);
+    const fIdx = items.findIndex((el) => el === payload);
+    const isColInRow = calcNumbRow(idxNull, size) === calcNumbRow(fIdx, size);
+    const isColInCols = calcNumbCol(idxNull, size) === calcNumbCol(fIdx, size);
 
     if (isColInRow || isColInCols) {
       const newItems = moveFigures({
         items,
         idxNull,
-        curIdx: payload,
+        curIdx: fIdx,
         smes: isColInCols ? size : 1
       });
 

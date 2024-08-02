@@ -16,6 +16,7 @@
   &-item {
     .stop-game & {
       cursor: default;
+      opacity: .2;
     }
     top: 0;
     left: 0;
@@ -30,7 +31,8 @@
     font-size: 50px;
     cursor: pointer;
     user-select: none;
+    opacity: 1;
     box-shadow: inset 0 0 1px rgba(0, 0, 0, .4);
-    transition: left $transitionSettings, top $transitionSettings;
+    transition: left $transitionSettings, top $transitionSettings, opacity $transitionSettings;
   }
 }

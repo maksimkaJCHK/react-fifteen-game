@@ -11,12 +11,14 @@ const Board = () => {
     size,
     startGame,
     moveFigure,
-    isGameOver
+    isGameOver,
+    firstPosition
   } = useGameContext();
 
-  const generateStyle = (idx) => {
+  const generateStyle = (item) => {
     const calcPosition = 100 / size;
 
+    const idx = items.findIndex((el) => el === item);
     const top = (calcPosition * calcNumbRow(idx, size)) - calcPosition;
     const left = (calcPosition * calcNumbCol(idx, size)) - calcPosition;
 
@@ -32,15 +34,15 @@ const Board = () => {
 
   return (
     <div className = { `board ${isGameOver ? 'stop-game' : '' }` }>
-      { items.map((item, count) => {
+      { firstPosition.map((item) => {
           if (!item) return null;
 
           return (
             <div
               key = { item }
               className = 'board-item'
-              style = { generateStyle(count) }
-              onClick = { () => moveFigure(count) }
+              style = { generateStyle(item) }
+              onClick = { () => moveFigure(item) }
             >
               { item }
             </div>

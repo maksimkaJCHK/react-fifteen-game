@@ -23,15 +23,26 @@ const initialState = {
   firstPosition: [],
   isGameOver: false,
   isStart: false,
-  size: 4,
+  size: 5,
   count: 0,
+  id: null,
   stopGameCondition: ''
 };
 
 const reducer = (state, { type, payload }) => {
   const { isGameOver } = state;
 
-  if (type === 'start') {
+  if (type === 'reloadGame') {
+    const { firstPosition } = state;
+
+    return {
+      ...state,
+      count: 0,
+      items: firstPosition.map((el) => el)
+    }
+  }
+
+  if (type === 'newGame') {
     const { size } = state;
     const items = generateBoardItem(size);
     const stopGameCondition = bForCompareArr([...generateArr(size * size)]);
@@ -43,6 +54,7 @@ const reducer = (state, { type, payload }) => {
       count: 0,
       isStart: true,
       isGameOver: false,
+      id: Date.now(),
       firstPosition: items.map((el) => el)
     }
   }
@@ -89,11 +101,17 @@ const reducer = (state, { type, payload }) => {
 export const Provider = ({ children }) => {
   const [ state, dispatch ] = useReducer(reducer, initialState);
 
-  const startGame = () => dispatch({ type: 'start' });
+  const newGame = () => dispatch({ type: 'newGame' });
+  const reloadGame = () => dispatch({ type: 'reloadGame' });
   const moveFigure = (idx) => dispatch({ type: 'move', payload: idx });
 
   return (
-    <MainContext.Provider value = {{ ...state, startGame, moveFigure }} >
+    <MainContext.Provider value = {{
+      ...state,
+      newGame,
+      reloadGame,
+      moveFigure,
+    }}>
       { children }
     </MainContext.Provider>
   )

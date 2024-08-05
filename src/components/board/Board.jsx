@@ -7,9 +7,10 @@ import './board.scss';
 
 const Board = () => {
   const {
+    id,
     items,
     size,
-    startGame,
+    newGame,
     moveFigure,
     isGameOver,
     firstPosition
@@ -34,9 +35,7 @@ const Board = () => {
     `${isGameOver ? 'stop-game' : '' }`
   ];
 
-  useEffect(() => {
-    startGame();
-  }, []);
+  useEffect(newGame, []);
 
   return (
     <div className = { boardClass.join(' ') }>
@@ -45,7 +44,7 @@ const Board = () => {
 
           return (
             <div
-              key = { item }
+              key = { item + id }
               className = 'board-item'
               style = { generateStyle(item) }
               onClick = { () => moveFigure(item) }

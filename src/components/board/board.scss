@@ -1,0 +1,69 @@
+@import '../../styles/easing';
+
+.board {
+  --size: 33.333333333333333%;
+  --border-bg: #375a7f;
+  --border-item-bg: #1e5c9d;
+  --main-font-size: 50px;
+
+  $transitionSettings: .4s $easeInOutSine 0s;
+
+  max-width: 400px;
+  margin: 20px auto;
+  position: relative;
+  background: var(--border-bg);
+  box-shadow: 0 0 5px rgba(0, 0, 0, .4);
+  font-family: Arial, "Helvetica CY", "Nimbus Sans L", sans-serif;
+
+  &-size {
+    &-3 {
+      @media screen and (min-width: 375px) {
+        --main-font-size: 70px;
+      }
+    }
+    &-4 {
+      --size: 25%;
+      --main-font-size: 40px;
+    }
+    &-5 {
+      --size: 20%;
+      --main-font-size: 30px;
+    }
+    @media screen and (min-width: 400px) {
+      &-4 {
+        --main-font-size: 55px;
+      }
+      &-5 {
+        --main-font-size: 40px;
+      }
+    }
+  }
+
+  &::before {
+    content: ' ';
+    display: block;
+    padding-top: 100%;
+  }
+  &-item {
+    .stop-game & {
+      cursor: default;
+      opacity: .5;
+    }
+    top: 0;
+    left: 0;
+    color: #fff;
+    width: var(--size);
+    height: var(--size);
+    position: absolute;
+    display: flex;
+    font-size: var(--main-font-size);
+    justify-content: center;
+    align-items: center;
+    background: var(--border-item-bg);
+    cursor: pointer;
+    user-select: none;
+    opacity: 1;
+    box-shadow: inset 0 0 2px rgba(0, 0, 0, .4);
+    transition: left $transitionSettings, top $transitionSettings, opacity .4s $easeInOutSine .4s;
+  }
+}

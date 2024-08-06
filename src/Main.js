@@ -7,6 +7,7 @@ import Wrapper from '@/components/wrapper/Wrapper';
 import Header from '@/components/header/Header';
 import Board from '@/components/board/Board';
 import Services from '@/components/services/Services';
+import Info from '@/components/info/Info';
 
 import './styles/style.scss';
 
@@ -20,6 +21,7 @@ const FifteenGame = () => {
         <Header />
 
         <Wrapper>
+          <Info />
           <Board />
           <Services />
         </Wrapper>

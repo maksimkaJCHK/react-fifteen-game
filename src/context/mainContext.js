@@ -38,6 +38,8 @@ const reducer = (state, { type, payload }) => {
     return {
       ...state,
       count: 0,
+      isStart: true,
+      isGameOver: false,
       items: firstPosition.map((el) => el)
     }
   }

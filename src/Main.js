@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom/client';
 import { Provider } from '@/context/mainContext.js';
 
 import Wrapper from '@/components/wrapper/Wrapper';
+import Header from '@/components/header/Header';
 import Board from '@/components/board/Board';
 import Services from '@/components/services/Services';
 
@@ -16,6 +17,8 @@ const FifteenGame = () => {
   return (
     <div className = "fifteen-game">
       <Provider>
+        <Header />
+
         <Wrapper>
           <Board />
           <Services />

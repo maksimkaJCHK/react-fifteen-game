@@ -23,7 +23,7 @@ const initialState = {
   firstPosition: [],
   isGameOver: false,
   isStart: false,
-  size: 5,
+  size: 3,
   count: 0,
   id: null,
   stopGameCondition: ''

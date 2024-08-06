@@ -8,6 +8,7 @@ import Header from '@/components/header/Header';
 import Board from '@/components/board/Board';
 import Services from '@/components/services/Services';
 import Info from '@/components/info/Info';
+import Footer from '@/components/footer/Footer';
 
 import './styles/style.scss';
 
@@ -19,13 +20,16 @@ const FifteenGame = () => {
     <div className = "fifteen-game">
       <Provider>
         <Header />
-
-        <Wrapper>
-          <Info />
-          <Board />
-          <Services />
+        <Wrapper className = "mainContent">
+          <main>
+            <Info />
+            <Board />
+            <Services />
+          </main>
         </Wrapper>
       </Provider>
+
+      <Footer />
     </div>
   );
 }

@@ -9,7 +9,7 @@ import './header.scss';
 
 const Header = () => {
   return (
-    <div className = "header">
+    <header className = "header">
       <Wrapper>
         <SettingsIcon />
 
@@ -17,7 +17,7 @@ const Header = () => {
           React fifteen game
         </div>
       </Wrapper>
-    </div>
+    </header>
   )
 }
 

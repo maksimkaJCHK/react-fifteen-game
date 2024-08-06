@@ -2,9 +2,9 @@ import React from 'react';
 
 import './wrapper.scss';
 
-const Wrapper = ({ children }) => {
+const Wrapper = ({ children, className = '' }) => {
   return (
-    <div className = "wrapper">
+    <div className = { `wrapper ${className}` }>
       { children }
     </div>
   )

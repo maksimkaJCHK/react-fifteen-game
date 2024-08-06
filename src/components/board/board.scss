@@ -2,15 +2,15 @@
 
 .board {
   --size: 33.333333333333333%;
-  --border-bg: #375a7f;
-  --border-item-bg: #1e5c9d;
+  --board-bg: var(--button-bg);
+  --board-item-bg: #1e5c9d;
   --main-font-size: 50px;
 
   $transitionSettings: .4s $easeInOutSine 0s;
 
   margin: 20px auto;
   position: relative;
-  background: var(--border-bg);
+  background: var(--board-bg);
   box-shadow: 0 0 5px rgba(0, 0, 0, .4);
 
   &-size {
@@ -59,7 +59,7 @@
     font-size: var(--main-font-size);
     justify-content: center;
     align-items: center;
-    background: var(--border-item-bg);
+    background: var(--board-item-bg);
     cursor: pointer;
     user-select: none;
     opacity: 1;

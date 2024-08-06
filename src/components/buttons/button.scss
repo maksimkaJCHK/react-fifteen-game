@@ -1,6 +1,6 @@
 .button {
   $transition: .15s ease-in-out;
-  --btn-bg: #375a7f;
+  --btn-bg: var(--button-bg);
   --btn-bg-hover: #2f4d6c;
   --btn-active-hover: #2c4846;
 

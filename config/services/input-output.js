@@ -1,4 +1,4 @@
-import paths from './paths';
+import paths from './paths.js';
 
 const inputOutput = {
   input: [`${paths.src}/Main.js`],

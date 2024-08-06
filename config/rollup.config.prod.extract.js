@@ -1,10 +1,9 @@
-import { terser } from "rollup-plugin-terser";
+import terser from '@rollup/plugin-terser';
 import sizes from "rollup-plugin-sizes";
-import { sizeSnapshot } from "rollup-plugin-size-snapshot";
 import { visualizer } from "rollup-plugin-visualizer";
 
-import inputOutput from './services/input-output';
-import bPlugins from './services/plugins';
+import inputOutput from './services/input-output.js';
+import bPlugins from './services/plugins.js';
 
 const plugins = bPlugins(true);
 
@@ -20,7 +19,6 @@ export default {
         drop_console: true,
       },
     }),
-    sizeSnapshot(),
     sizes(),
     visualizer({
       emitFile: false,

@@ -1,9 +1,9 @@
 import serve from 'rollup-plugin-serve';
 import livereload from 'rollup-plugin-livereload';
-import paths from './services/paths';
+import paths from './services/paths.js';
 
-import inputOutput from './services/input-output';
-import bPlugins from './services/plugins';
+import inputOutput from './services/input-output.js';
+import bPlugins from './services/plugins.js';
 
 inputOutput.output.sourcemap = 'inline';
 

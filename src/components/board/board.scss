@@ -44,11 +44,13 @@
     display: block;
     padding-top: 100%;
   }
+
+  .stop-game &-item {
+    cursor: default;
+    opacity: .5;
+  }
+
   &-item {
-    .stop-game & {
-      cursor: default;
-      opacity: .5;
-    }
     top: 0;
     left: 0;
     color: #fff;

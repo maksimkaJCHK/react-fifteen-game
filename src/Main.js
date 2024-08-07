@@ -9,6 +9,7 @@ import Board from '@/components/board/Board';
 import Services from '@/components/services/Services';
 import Info from '@/components/info/Info';
 import Footer from '@/components/footer/Footer';
+import Settings from '@/components/settings/Settings';
 
 import './styles/style.scss';
 
@@ -19,6 +20,7 @@ const FifteenGame = () => {
   return (
     <div className = "fifteen-game">
       <Provider>
+        <Settings />
         <Header />
         <Wrapper className = "mainContent">
           <main>

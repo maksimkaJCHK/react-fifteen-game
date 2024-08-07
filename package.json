@@ -10,8 +10,7 @@
   },
   "scripts": {
     "dev": "rollup -c ./config/rollup.config.js -w",
-    "build": "rollup -c ./config/rollup.config.prod.js",
-    "build:extract": "rollup -c ./config/rollup.config.prod.extract.js"
+    "build": "rollup -c ./config/rollup.config.prod.extract.js"
   },
   "keywords": [
     "react-fifteen-game",

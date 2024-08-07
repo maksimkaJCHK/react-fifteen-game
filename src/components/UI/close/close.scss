@@ -1,0 +1,22 @@
+@import '../../../styles/easing';
+
+.close {
+  width: 40px;
+  cursor: pointer;
+
+  svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  path {
+    fill: var(--item-bg);
+    transition: fill .4s $easeInOutSine 0s;
+  }
+
+  &:hover {
+    path {
+      fill: #2f4d6c;
+    }
+  }
+}

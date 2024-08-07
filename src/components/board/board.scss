@@ -3,7 +3,7 @@
 .board {
   --size: 33.333333333333333%;
   --board-bg: var(--button-bg);
-  --board-item-bg: #1e5c9d;
+  --board-item-bg: var(--item-bg);
   --main-font-size: 50px;
 
   $transitionSettings: .4s $easeInOutSine 0s;

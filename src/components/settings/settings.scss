@@ -1,0 +1,43 @@
+@import '../../styles/easing';
+
+.settings {
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  position: fixed;
+  color: #fff;
+
+  .wrapper {
+    padding-top: 0;
+    padding-bottom: 0;
+    position: relative;
+  }
+
+  &-wrapper {
+    width: 100%;
+    max-width: 400px;
+    overflow: hidden;
+    pointer-events: none;
+    box-sizing: border-box;
+    position: absolute;
+  }
+
+  &-block {
+    height: 100vh;
+    pointer-events: auto;
+    transform: translateX(-100%);
+    background: var(--service-block-bg);
+    transition: transform .4s $easeInOutQuad 0s;
+
+    .open & {
+      transform: translateX(0);
+    }
+
+    .close {
+      top: 10px;
+      right: 10px;
+      position: absolute;
+    }
+  }
+}

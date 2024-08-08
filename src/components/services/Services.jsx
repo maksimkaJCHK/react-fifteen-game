@@ -1,7 +1,7 @@
 import React from 'react';
-import Button from '@/components/buttons/button.jsx';
+import Button from '@/components/UI/buttons/button';
 
-import { useGameContext } from '@/context/mainContext.js';
+import { useGameContext } from '@/context/mainContext';
 
 import './services.scss';
 

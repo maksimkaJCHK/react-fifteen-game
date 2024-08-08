@@ -32,6 +32,8 @@ export const Provider = ({ children }) => {
   const openSettings = () => dispatch({ type: 'changeSettings', payload: true });
   const closeSettings = () => dispatch({ type: 'changeSettings', payload: false });
 
+  const changeSize = (size) => dispatch({ type: 'changeSize', payload: size });
+
   return (
     <MainContext.Provider value = {{
       ...state,
@@ -39,7 +41,8 @@ export const Provider = ({ children }) => {
       reloadGame,
       moveFigure,
       openSettings,
-      closeSettings
+      closeSettings,
+      changeSize
     }}>
       { children }
     </MainContext.Provider>

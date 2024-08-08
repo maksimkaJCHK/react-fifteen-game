@@ -8,8 +8,39 @@ import {
   isStopGame
 } from '@/helpers/helpers.js';
 
+const startGameDefParam = {
+  count: 0,
+  isStart: true,
+  isGameOver: false,
+}
+
+const startGameGenerate = (size) => {
+  const items = generateBoardItem(size);
+  const stopGameCondition = bForCompareArr([...generateArr(size * size)]);
+
+  return {
+    items,
+    stopGameCondition
+  }
+};
+
 const mainReducer = (state, { type, payload }) => {
   const { isGameOver } = state;
+
+  if (type === 'changeSize') {
+    const { items, stopGameCondition } = startGameGenerate(payload);
+
+    return {
+      ...state,
+      ...startGameDefParam,
+      stopGameCondition,
+      items,
+      id: Date.now(),
+      isSettings: false,
+      size: payload,
+      firstPosition: [ ...items ],
+    }
+  }
 
   if (type === 'changeSettings') {
     return {
@@ -23,27 +54,22 @@ const mainReducer = (state, { type, payload }) => {
 
     return {
       ...state,
-      count: 0,
-      isStart: true,
-      isGameOver: false,
-      items: firstPosition.map((el) => el)
+      ...startGameDefParam,
+      items: [ ...firstPosition ]
     }
   }
 
   if (type === 'newGame') {
     const { size } = state;
-    const items = generateBoardItem(size);
-    const stopGameCondition = bForCompareArr([...generateArr(size * size)]);
+    const { items, stopGameCondition } = startGameGenerate(size);
 
     return {
       ...state,
       items,
       stopGameCondition,
-      count: 0,
-      isStart: true,
-      isGameOver: false,
+      ...startGameDefParam,
       id: Date.now(),
-      firstPosition: items.map((el) => el)
+      firstPosition: [ ...items ]
     }
   }
 

@@ -5,7 +5,8 @@ import {
   moveFigures,
   generateArr,
   bForCompareArr,
-  isStopGame
+  isStopGame,
+  saveGameParam
 } from '@/helpers/helpers.js';
 
 const startGameDefParam = {
@@ -30,7 +31,7 @@ const mainReducer = (state, { type, payload }) => {
   if (type === 'changeSize') {
     const { items, stopGameCondition } = startGameGenerate(payload);
 
-    return {
+    const gameParams = {
       ...state,
       ...startGameDefParam,
       stopGameCondition,
@@ -40,6 +41,10 @@ const mainReducer = (state, { type, payload }) => {
       size: payload,
       firstPosition: [ ...items ],
     }
+
+    saveGameParam(gameParams);
+
+    return gameParams;
   }
 
   if (type === 'changeSettings') {
@@ -52,18 +57,22 @@ const mainReducer = (state, { type, payload }) => {
   if (type === 'reloadGame') {
     const { firstPosition } = state;
 
-    return {
+    const gameParams = {
       ...state,
       ...startGameDefParam,
       items: [ ...firstPosition ]
     }
+
+    saveGameParam(gameParams);
+
+    return gameParams;
   }
 
   if (type === 'newGame') {
     const { size } = state;
     const { items, stopGameCondition } = startGameGenerate(size);
 
-    return {
+    const gameParams = {
       ...state,
       items,
       stopGameCondition,
@@ -71,6 +80,10 @@ const mainReducer = (state, { type, payload }) => {
       id: Date.now(),
       firstPosition: [ ...items ]
     }
+
+    saveGameParam(gameParams);
+
+    return gameParams;
   }
 
   if (type === 'move' && !isGameOver) {
@@ -95,13 +108,17 @@ const mainReducer = (state, { type, payload }) => {
         smes: isColInCols ? size : 1
       });
 
-      return {
+      const gameParams = {
         ...state,
         items: newItems,
         count: count + 1,
         isGameOver: isStopGame(newItems, stopGameCondition),
         isStart: !isStopGame(newItems, stopGameCondition),
       }
+
+      saveGameParam(gameParams);
+
+      return gameParams;
     }
 
     return {

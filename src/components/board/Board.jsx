@@ -10,7 +10,6 @@ const Board = () => {
     id,
     items,
     size,
-    newGame,
     moveFigure,
     isGameOver,
     firstPosition
@@ -34,8 +33,6 @@ const Board = () => {
     `board-size-${size}`,
     `${isGameOver ? 'stop-game' : '' }`
   ];
-
-  useEffect(newGame, []);
 
   return (
     <div className = { boardClass.join(' ') }>

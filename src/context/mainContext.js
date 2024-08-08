@@ -5,6 +5,7 @@ import React, {
 } from "react";
 
 import mainReducer from './mainReducer';
+import { getParamGame } from '@/helpers/helpers';
 
 const MainContext = createContext();
 
@@ -23,7 +24,10 @@ const initialState = {
 };
 
 export const Provider = ({ children }) => {
-  const [ state, dispatch ] = useReducer(mainReducer, initialState);
+  const savedParams = getParamGame();
+
+  const initState = savedParams || initialState;
+  const [ state, dispatch ] = useReducer(mainReducer, initState);
 
   const newGame = () => dispatch({ type: 'newGame' });
   const reloadGame = () => dispatch({ type: 'reloadGame' });
@@ -33,6 +37,12 @@ export const Provider = ({ children }) => {
   const closeSettings = () => dispatch({ type: 'changeSettings', payload: false });
 
   const changeSize = (size) => dispatch({ type: 'changeSize', payload: size });
+
+  if (savedParams === null) {
+    console.log('a');
+    newGame();
+    openSettings();
+  };
 
   return (
     <MainContext.Provider value = {{

@@ -1,4 +1,4 @@
-import React, {} from 'react';
+import React, { useEffect } from 'react';
 import Wrapper from '@/components/wrapper/Wrapper';
 import Close from '@/components/UI/close/close';
 import Checkbox from '@/components/UI/checkbox/Checkbox';
@@ -10,12 +10,21 @@ import useCheckbox from '@/hooks/useCheckbox';
 import './settings.scss';
 
 const Settings = () => {
-  const { isSettings, closeSettings, changeSize } = useGameContext();
-  const param = useCheckbox(3);
+  const {
+    isSettings,
+    closeSettings,
+    changeSize,
+    size
+  } = useGameContext();
+  const param = useCheckbox(size);
+
+  useEffect(() => {
+    if (!isSettings) param.onChange(size);
+  }, [isSettings]);
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log(param.curState);
+
     changeSize(param.curState);
   }
 

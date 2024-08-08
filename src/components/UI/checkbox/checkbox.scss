@@ -23,6 +23,7 @@
     font-weight: bold;
     position: relative;
     padding-left: 30px;
+    user-select: none;
     text-shadow: 1px 1px 2px black;
 
     &::after {

@@ -119,3 +119,15 @@ export const generateBoardItem = (sizeBoard = 3) => {
 
   return newPuzzle;
 }
+
+const nameForLS = 'game:settings';
+
+export const saveGameParam = (state) => {
+  localStorage.setItem(nameForLS, JSON.stringify(state));
+};
+
+export const getParamGame = () => {
+  const params = localStorage.getItem(nameForLS);
+
+  return params ? JSON.parse(params) : null;
+};

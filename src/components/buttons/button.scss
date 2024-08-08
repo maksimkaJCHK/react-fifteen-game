@@ -1,5 +1,7 @@
+@import '../../styles/easing';
+
 .button {
-  $transition: .15s ease-in-out;
+  $transition: .15s $easeInOutSine .2s;
   --btn-bg: var(--button-bg);
   --btn-bg-hover: #2f4d6c;
   --btn-active-hover: #2c4846;

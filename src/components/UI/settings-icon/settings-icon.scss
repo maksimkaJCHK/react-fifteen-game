@@ -1,7 +1,20 @@
+@import '../../../styles/easing';
+
 .settings-icon {
   width: 30px;
   height: 30px;
   cursor: pointer;
-  background: url('../../../assets/settings.svg') no-repeat 0 0;
-  background-size: auto 100%;
+
+  svg {
+    width: 100%;
+    height: 100%;
+    fill: #fff;
+    transition: fill .4s $easeInOutSine 0s;
+  }
+
+  &:hover {
+    svg {
+      fill: var(--item-bg);
+    }
+  }
 }

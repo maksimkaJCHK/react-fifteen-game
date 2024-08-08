@@ -11,11 +11,18 @@ const Settings = () => {
 
   return (
     <div className = { `settings ${isSettings ? 'open' : ''}` }>
-      <Wrapper>
-        <div className="settings-wrapper">
+      <Wrapper onClick = { closeSettings }>
+        <div
+          className="settings-wrapper"
+          onClick = { (e) => e.stopPropagation() }
+        >
           <div className="settings-block">
             <Close onClick = { closeSettings } />
-          </div>
+
+            <div className="settings-header">
+              Size game
+            </div>
+            </div>
         </div>
       </Wrapper>
     </div>

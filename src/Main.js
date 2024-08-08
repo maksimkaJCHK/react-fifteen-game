@@ -22,6 +22,7 @@ const FifteenGame = () => {
       <Provider>
         <Settings />
         <Header />
+
         <Wrapper className = "mainContent">
           <main>
             <Info />

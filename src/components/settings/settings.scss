@@ -1,6 +1,8 @@
 @import '../../styles/easing';
 
 .settings {
+  --track-color: #6587ac;
+
   top: 0;
   left: 0;
   z-index: 1;
@@ -11,24 +13,81 @@
   .wrapper {
     padding-top: 0;
     padding-bottom: 0;
-    position: relative;
+
+    &::after {
+      top: 0;
+      left: 20px;
+      width: calc(100% - 20px);
+      content: ' ';
+      display: block;
+      position: absolute;
+      height: 100vh;
+      opacity: 0;
+      z-index: 2;
+      pointer-events: none;
+      background: rgba(0, 0, 0, .4);
+      transition: opacity .4s $easeInOutQuad 0s;
+    }
+  }
+
+  &.open {
+    .wrapper {
+      &::after {
+        opacity: 1;
+        cursor: pointer;
+        pointer-events: all;
+      }
+    }
+  }
+
+  &-header {
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 120%;
+    margin: 0 0 20px;
+    text-shadow: 1px 1px 2px #000;
   }
 
   &-wrapper {
-    width: 100%;
-    max-width: 400px;
+    left: 0;
+    width: 80%;
     overflow: hidden;
     pointer-events: none;
     box-sizing: border-box;
     position: absolute;
+    padding-right: 3px;
+    z-index: 3;
   }
 
   &-block {
     height: 100vh;
     pointer-events: auto;
-    transform: translateX(-100%);
+    box-sizing: border-box;
+    transform: translateX(-110%);
     background: var(--service-block-bg);
     transition: transform .4s $easeInOutQuad 0s;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .4);
+    padding: 60px 15px 10px;
+    overflow: auto;
+
+    @-moz-document url-prefix() {
+      & {
+        scrollbar-width: auto;
+        scrollbar-color: var(--item-bg) var(--track-color);
+      }
+    }
+    &::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: var(--track-color);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: var(--item-bg);
+      border-radius: 20px;
+    }
 
     .open & {
       transform: translateX(0);
@@ -38,6 +97,16 @@
       top: 10px;
       right: 10px;
       position: absolute;
+    }
+  }
+
+  @media screen and (min-width: 980px) {
+    .wrapper {
+      position: relative;
+    }
+
+    &-wrapper {
+      left: auto;
     }
   }
 }

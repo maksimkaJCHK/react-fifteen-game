@@ -6,7 +6,7 @@ const useCheckbox = (initValue = 3) => {
   return {
     curState,
     onChange
-  }
+  };
 }
 
 export default useCheckbox;

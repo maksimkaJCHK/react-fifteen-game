@@ -20,12 +20,19 @@
   border-radius: 5px;
   background-color: var(--btn-bg);
   font: 15px/120% Tahoma, "Geneva CY", sans-serif;
-  transition: color $transition, background-color $transition, border-color $transition, box-shadow $transition;
+  transition: color $transition, background-color $transition, border-color $transition, box-shadow $transition, opacity $transition;
 
   &:hover {
     --btn-bg: var(--btn-bg-hover);
   }
   &:active {
     --btn-bg: var(--btn-active-hover);
+  }
+  &[disabled] {
+    opacity: .7;
+
+    &:hover {
+      --btn-bg: var(--button-bg);
+    }
   }
 }

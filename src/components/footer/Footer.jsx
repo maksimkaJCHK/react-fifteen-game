@@ -12,7 +12,7 @@ const Footer = () => {
           target="_blank"
           className="footer-repo"
         >
-          game repository
+          Game repository
         </a>
       </Wrapper>
     </footer>

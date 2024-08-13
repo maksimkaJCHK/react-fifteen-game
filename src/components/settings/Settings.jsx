@@ -62,7 +62,9 @@ const Settings = () => {
                 { ...param }
               />
 
-              <Button classNames = { ['settings-submit'] }>
+              <Button
+                disabled = { size === param.curState }
+                classNames = { ['settings-submit'] }>
                 Save settings
               </Button>
             </form>

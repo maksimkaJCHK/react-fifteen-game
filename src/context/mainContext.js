@@ -1,4 +1,5 @@
 import React, {
+  useEffect,
   createContext,
   useContext,
   useReducer
@@ -38,11 +39,12 @@ export const Provider = ({ children }) => {
 
   const changeSize = (size) => dispatch({ type: 'changeSize', payload: size });
 
-  if (savedParams === null) {
-    console.log('a');
-    newGame();
-    openSettings();
-  };
+  useEffect(() => {
+    if (savedParams === null) {
+      newGame();
+      openSettings();
+    };
+  }, [])
 
   return (
     <MainContext.Provider value = {{

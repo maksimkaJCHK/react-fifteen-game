@@ -6,12 +6,16 @@ import { useGameContext } from '@/context/mainContext';
 import './services.scss';
 
 const Services = () => {
-  const { reloadGame, newGame } = useGameContext();
+  const { reloadGame, newGame, count } = useGameContext();
 
   return (
     <div className = "services">
       <Button onClick = { newGame }>New game</Button>
-      <Button onClick = { reloadGame }>Reload game</Button>
+      <Button
+        disabled = { count === 0 }
+        onClick = { reloadGame }>
+          Reload game
+        </Button>
     </div>
   )
 }

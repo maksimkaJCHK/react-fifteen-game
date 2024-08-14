@@ -2,6 +2,12 @@
   "name": "react-fifteen-game",
   "version": "0.0.1",
   "description": "react-fifteen-game, а по русски просто пятнашки.",
+  "keywords": [
+    "react-fifteen-game",
+    "fifteen game",
+    "fifteen game on react.js",
+    "пятнашки"
+  ],
   "main": "index.js",
   "type": "module",
   "repository": {
@@ -12,10 +18,6 @@
     "dev": "rollup -c ./config/rollup.config.js -w",
     "build": "rollup -c ./config/rollup.config.prod.extract.js"
   },
-  "keywords": [
-    "react-fifteen-game",
-    "пятнашки"
-  ],
   "author": "Maksim Zhuchkov",
   "license": "MIT",
   "devDependencies": {

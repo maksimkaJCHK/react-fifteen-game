@@ -59,12 +59,16 @@
     font-size: var(--main-font-size);
     justify-content: center;
     align-items: center;
-    background: var(--board-item-bg);
+    background-color: var(--board-item-bg);
     cursor: pointer;
     user-select: none;
     opacity: 1;
     text-shadow: 1px 1px 3px #000;
     box-shadow: inset 0 0 2px rgba(0, 0, 0, .4);
-    transition: left $transitionSettings, top $transitionSettings, opacity .4s $easeInOutSine .4s;
+    transition: left $transitionSettings, top $transitionSettings, opacity .4s $easeInOutSine .4s, background-color $transitionSettings;
+
+    &.completed {
+      --board-item-bg: #064e9b;
+    }
   }
 }

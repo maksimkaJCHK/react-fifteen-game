@@ -1,32 +1,22 @@
-import React, { useEffect } from 'react';
+import React, { memo, useEffect } from 'react';
+
 import Wrapper from '@/components/wrapper/Wrapper';
 import Close from '@/components/UI/close/close';
 import Checkbox from '@/components/UI/checkbox/Checkbox';
 import Button from '@/components/UI/buttons/button';
 
-import { useGameContext } from '@/context/mainContext';
-import useCheckbox from '@/hooks/useCheckbox';
-
 import './settings.scss';
 
-const Settings = () => {
-  const {
-    isSettings,
-    closeSettings,
-    changeSize,
-    size
-  } = useGameContext();
-  const param = useCheckbox(size);
-
+const Settings = memo(({
+  isSettings,
+  size,
+  param,
+  onSubmit,
+  closeSettings,
+}) => {
   useEffect(() => {
     if (!isSettings) param.onChange(size);
   }, [isSettings]);
-
-  const onSubmit = (e) => {
-    e.preventDefault();
-
-    changeSize(param.curState);
-  }
 
   return (
     <div className = { `settings ${isSettings ? 'open' : ''}` }>
@@ -73,6 +63,6 @@ const Settings = () => {
       </Wrapper>
     </div>
   )
-}
+})
 
 export default Settings;

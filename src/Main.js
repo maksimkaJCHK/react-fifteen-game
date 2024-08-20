@@ -9,7 +9,7 @@ import BoardContainer from '@/components/board/BoardContainer';
 import Services from '@/components/services/Services';
 import Info from '@/components/info/Info';
 import Footer from '@/components/footer/Footer';
-import Settings from '@/components/settings/Settings';
+import SettingsContainer from '@/components/settings/SettingsContainer';
 
 import './styles/style.scss';
 
@@ -20,7 +20,7 @@ const FifteenGame = () => {
   return (
     <div className = "fifteen-game">
       <Provider>
-        <Settings />
+        <SettingsContainer />
         <Header />
 
         <Wrapper className = "mainContent">

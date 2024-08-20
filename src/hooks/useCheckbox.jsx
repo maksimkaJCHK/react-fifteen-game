@@ -1,12 +1,13 @@
-import { useReducer } from "react";
+import { useReducer, useMemo } from "react";
 
 const useCheckbox = (initValue = 3) => {
   const [ curState, onChange ] = useReducer((_, e) => Number(e?.target?.value || e), initValue);
 
-  return {
-    curState,
-    onChange
-  };
+  return useMemo(() => ({
+      curState,
+      onChange
+    }), [curState]
+  )
 }
 
 export default useCheckbox;

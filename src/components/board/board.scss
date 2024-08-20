@@ -68,7 +68,7 @@
     transition: left $transitionSettings, top $transitionSettings, opacity .4s $easeInOutSine .4s, background-color $transitionSettings;
 
     &.completed {
-      --board-item-bg: #064e9b;
+      --board-item-bg: #03448a;
     }
   }
 }

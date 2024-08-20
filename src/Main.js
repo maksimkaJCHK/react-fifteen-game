@@ -5,7 +5,7 @@ import { Provider } from '@/context/mainContext.js';
 
 import Wrapper from '@/components/wrapper/Wrapper';
 import Header from '@/components/header/Header';
-import Board from '@/components/board/Board';
+import BoardContainer from '@/components/board/BoardContainer';
 import Services from '@/components/services/Services';
 import Info from '@/components/info/Info';
 import Footer from '@/components/footer/Footer';
@@ -26,7 +26,7 @@ const FifteenGame = () => {
         <Wrapper className = "mainContent">
           <main>
             <Info />
-            <Board />
+            <BoardContainer />
             <Services />
           </main>
         </Wrapper>
